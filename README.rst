@@ -3,6 +3,7 @@ Ray Tutorial
 
 To run the tutuorial online, click on the binder link below:
 
+.. image:: https://mybinder.org/badge.svg :target: https://mybinder.org/v2/gh/jzf2101/tutorial/master
 
 
 Local Setup
