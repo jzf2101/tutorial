@@ -1,47 +1,29 @@
 Ray Tutorial
 ============
 
-Setup
------
+To run the tutuorial online, click on the binder link below:
 
-1. Make sure you have Python installed (we recommend using the `Anaconda Python
-   distribution`_). Ray works with both Python 2 and Python 3. If you are unsure
-   which to use, then use Python 3.
 
-2. **Install Jupyter** with ``pip install jupyter``. Verify that you can start
-   a Jupyter notebook with the command ``jupyter-notebook``.
 
-3. **Install Ray** by running ``pip install ray``. Verify that you can run
+Local Setup
+-----------
 
-    .. code-block:: bash
+To install the tutorial on your own machine:
 
-      import ray
-      ray.init()
+1. Make sure you have installed
+`Anaconda <https://www.anaconda.com/download>`__. We recommend Python 3.6.
 
-   in a Python interpreter.
+2. Clone the tutorial repository:
 
-4. Clone the tutorial repository with
+.. code-block:: bash
 
-    .. code-block:: bash
+  git clone https://github.com/ray-project/tutorial.git
 
-      git clone https://github.com/ray-project/tutorial.git
+3. Install the dependencies from ``enviornment.yml`` using ``conda``:
 
-5. Install the following additional dependencies.
+.. code-block:: bash
 
-    .. code-block:: bash
-
-      pip install tensorflow
-      pip install gym
-      pip install scipy
-      pip install opencv-python
-      pip install bokeh
-      pip install ipywidgets==6.0.0
-
-   Verify that you can run ``import tensorflow`` and ``import gym`` in a Python
-   interpreter.
-
-   **Note:** If you have trouble installing these Python modules, note that
-   almost all of the exercises can be done without them.
+    conda env create -f enviornment.yml
 
 Exercises
 ---------
@@ -51,6 +33,7 @@ opened in a Jupyter notebook by running the following commands.
 
 .. code-block:: bash
 
+  source activate ray-tutorial
   cd tutorial/exercises
   jupyter-notebook
 
