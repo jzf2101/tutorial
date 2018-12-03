@@ -1,13 +1,34 @@
 Ray Tutorial
 ============
 
-To run the tutuorial online, click on the binder link below:
+Try Ray on Binder (Experimental)
+--------------------------------
 
-.. image:: https://mybinder.org/badge.svg :target: https://mybinder.org/v2/gh/jzf2101/tutorial/master
+Try the Ray tutorials online on `Binder`_.
 
+.. _`Binder`: https://mybinder.org/v2/gh/ray-project/tutorial/master
 
 Local Setup
 -----------
+
+1. Make sure you have Python installed (we recommend using the `Anaconda Python
+   distribution`_). Ray works with both Python 2 and Python 3. If you are unsure
+   which to use, then use Python 3.
+
+   **If not using conda**, continue to step 2.
+
+   **If using conda**, you can then run the following commands and skip the next 4 steps:
+
+   .. code-block:: bash
+
+       git clone https://github.com/ray-project/tutorial
+       cd tutorial
+       conda env create -f environment.yml
+       conda activate ray-tutorial
+
+
+
+3. **Install Ray** by running ``pip install -U ray``. Verify that you can run
 
 To install the tutorial on your own machine:
 
@@ -20,11 +41,21 @@ To install the tutorial on your own machine:
 
   git clone https://github.com/ray-project/tutorial.git
 
-3. Install the dependencies from ``enviornment.yml`` using ``conda``:
+      pip install modin
+      pip install tensorflow
+      pip install gym
+      pip install scipy
+      pip install opencv-python
+      pip install bokeh
+      pip install ipywidgets==6.0.0
+      pip install keras
 
 .. code-block:: bash
 
     conda env create -f enviornment.yml
+
+6. If you want to run the pong exercise (in `rl_exercises/rl_exercise05.ipynb`),
+   you will need to do `pip install utilities/pong_py`.
 
 Exercises
 ---------
@@ -50,43 +81,43 @@ in parallel.
 
 **Exercise 2:** Execute remote functions in parallel with some dependencies.
 
-**Exercise 3:** Pass object IDs into tasks to construct dependencies between
-tasks.
+**Exercise 3:** Call remote functions from within remote functions.
 
-**Exercise 4:** Call remote functions from within remote functions.
-
-**Exercise 5:** Use ``ray.wait`` to ignore stragglers. See the
-`documentation for wait`_.
-
-**Exercise 6:** Use ``ray.wait`` to process tasks in the order that they finish.
-See the `documentation for wait`_.
-
-**Exercise 7:** Use actors to share state between tasks. See the documentation
+**Exercise 4:** Use actors to share state between tasks. See the documentation
 on `using actors`_.
 
-**Exercise 8:** Pass actor handles to tasks so that multiple tasks can invoke
+**Exercise 5:** Pass actor handles to tasks so that multiple tasks can invoke
 methods on the same actor.
 
-**Exercise 9:** Use ``ray.put`` to avoid serializing and copying the same
+**Exercise 6:** Use ``ray.wait`` to ignore stragglers. See the
+`documentation for wait`_.
+
+**Exercise 7:** Use ``ray.wait`` to process tasks in the order that they finish.
+See the `documentation for wait`_.
+
+**Exercise 8:** Use ``ray.put`` to avoid serializing and copying the same
 object into shared memory multiple times.
 
-**Exercise 10:** Specify that an actor requires some GPUs. For a complete
+**Exercise 9:** Specify that an actor requires some GPUs. For a complete
 example that does something similar, you may want to see the `ResNet example`_.
 
-**Exercise 11:** Specify that a remote function requires certain custom
+**Exercise 10:** Specify that a remote function requires certain custom
 resources. See the documentation on `custom resources`_.
 
-**Exercise 12:** Extract neural network weights from an actor on one process,
+**Exercise 11:** Extract neural network weights from an actor on one process,
 and set them in another actor. You may want to read the documentation on
 `using Ray with TensorFlow`_.
 
+**Exercise 12:** Pass object IDs into tasks to construct dependencies between
+tasks and perform a tree reduce.
+
 .. _`Anaconda Python distribution`: https://www.continuum.io/downloads
-.. _`Ray documentation`: http://ray.readthedocs.io/en/latest/?badge=latest
-.. _`documentation for wait`: http://ray.readthedocs.io/en/latest/api.html#waiting-for-a-subset-of-tasks-to-finish.
-.. _`using actors`: http://ray.readthedocs.io/en/latest/actors.html
-.. _`using Ray with TensorFlow`: http://ray.readthedocs.io/en/latest/using-ray-with-tensorflow.html
-.. _`ResNet example`: http://ray.readthedocs.io/en/latest/example-resnet.html
-.. _`custom resources`: http://ray.readthedocs.io/en/latest/resources.html#custom-resources
+.. _`Ray documentation`: https://ray.readthedocs.io/en/latest/?badge=latest
+.. _`documentation for wait`: https://ray.readthedocs.io/en/latest/api.html#ray.wait
+.. _`using actors`: https://ray.readthedocs.io/en/latest/actors.html
+.. _`using Ray with TensorFlow`: https://ray.readthedocs.io/en/latest/using-ray-with-tensorflow.html
+.. _`ResNet example`: https://ray.readthedocs.io/en/latest/example-resnet.html
+.. _`custom resources`: https://ray.readthedocs.io/en/latest/resources.html#custom-resources
 
 
 More In-Depth Examples
@@ -95,6 +126,14 @@ More In-Depth Examples
 **Sharded Parameter Server:** This exercise involves implementing a parameter
 server as a Ray actor, implementing a simple asynchronous distributed training
 algorithm, and sharding the parameter server to improve throughput.
+
+**Speed Up Pandas:** This exercise involves using `Modin`_ to speed up your
+pandas workloads.
+
+**MapReduce:** This exercise shows how to implement a toy version of the
+MapReduce system on top of Ray.
+
+.. _`Modin`: https://modin.readthedocs.io/en/latest/
 
 RL Exercises
 ------------
@@ -107,3 +146,31 @@ notebook by running the following commands.
 
   cd tutorial/rl_exercises
   jupyter-notebook
+
+**Exercise 1:** Introduction to Markov Decision Processes.
+
+**Exercise 2:** Derivative free optimization.
+
+**Exercise 3:** Introduction to proximal policy optimization (PPO).
+
+**Exercise 4:** Introduction to asynchronous advantage actor-critic (A3C).
+
+**Exercise 5:** Train a policy to play pong using RLlib. Deploy it using actors,
+and play against the trained policy.
+
+Tune Exercise
+-------------
+
+Tune is a tool for distributed hyperparameter search. There is one tutorial notebook
+for Tune:
+
+**tune_exercises/Tune.ipynb:** Introduces Tune and its various features on an MNIST example.
+
+The notebook can be opened in a Jupyter notebook by running the following commands.
+
+.. code-block:: bash
+
+  cd tutorial/tune_exercises
+  jupyter-notebook
+
+*Note*: The Tune notebook has exercises that don't work on Jupyter Lab. Answers can be found in ``tune_exercises/Tune-Answers.ipynb``.
