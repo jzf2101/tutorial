@@ -5,7 +5,8 @@ dependencies:
   - python=3.6
   - bokeh
   - ipywidgets=6.0.0
-  - tensorflow
+  - tensorflow-gpu
+  - cudatoolkit=9
   - pip:
     - ray[rllib]==0.5.3
     - keras
